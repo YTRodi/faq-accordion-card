@@ -11,5 +11,8 @@
   },
   "dependencies": {
     "astro": "^2.0.17"
+  },
+  "devDependencies": {
+    "sass": "^1.58.3"
   }
 }
