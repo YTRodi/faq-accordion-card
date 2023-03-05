@@ -1,9 +1,10 @@
-$card-width: 20rem;
+$mobile-faq-card-width: 20rem;
 
 .faq_card {
+  box-shadow: 0px 60px 200px -65px $dark_grayish_blue;
   position: relative;
-  max-width: $card-width; // TODO: double check this !!!
-  width: $card-width;
+  max-width: $mobile-faq-card-width;
+  width: $mobile-faq-card-width;
   border-radius: 1.5rem;
   background-color: white;
   display: flex;
@@ -22,12 +23,11 @@ $card-width: 20rem;
     }
 
     &_box {
-      // TODO: fix this img
       width: 30%;
       height: auto;
       position: absolute;
-      top: -10%;
-      left: 12.5%;
+      top: -8%;
+      left: 12%;
     }
 
     &_shadow {
@@ -39,6 +39,7 @@ $card-width: 20rem;
 
   &_title {
     text-align: center;
+    color: $desaturated_blue;
   }
 
   &_accordion {
@@ -52,7 +53,7 @@ $card-width: 20rem;
       display: flex;
       flex-direction: column;
       margin: 0 1.25rem;
-      border-bottom: 1px solid black; // TODO: fix color and size
+      border-bottom: 1px solid $light_grayish_blue;
 
       &_button {
         all: unset;
@@ -64,22 +65,27 @@ $card-width: 20rem;
       }
 
       &_question {
-        font-weight: normal;
+        font-weight: 500;
         font-size: 0.8rem;
-        // TODO: add color
+        color: $dark_grayish_blue;
+        transition: color 0.2s;
+
+        &:hover {
+          color: $soft_red;
+        }
 
         &--expanded {
-          // TODO: add color
           font-weight: bold;
+          color: $very_dark_grayish_blue;
         }
       }
 
       &_answer {
-        // TODO: add color
         width: 90%;
         font-weight: 400;
         font-size: 0.75rem;
         padding-bottom: 0.75rem;
+        color: $dark_grayish_blue;
       }
     }
   }
