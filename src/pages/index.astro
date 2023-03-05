@@ -1,14 +1,11 @@
 ---
 import Layout from "~/layouts/Layout.astro";
+import Container from "~/layouts/Container.astro";
 import FaqAccordionCard from "~/components/FaqAccordionCard.astro";
 ---
 
 <Layout title="Faq accordion card">
-  <!-- TODO: crear el componente <Container /> ???  -->
-  <div
-    style="height: 100vh; border:0px solid green; display:flex; justify-content: center; align-items: center; background-color: gray;"
-  >
-    <!-- TODO: centar usando max-width (tengo un ej en las notes) -->
+  <Container>
     <FaqAccordionCard />
-  </div>
+  </Container>
 </Layout>

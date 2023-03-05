@@ -3,6 +3,9 @@
 @import "base/reset";
 @import "base/typo";
 
+@import "layouts/container";
+
+@import "components/faq_accordion_button";
 @import "components/faq_accordion_button";
 
-// TODO: set container breakpoints ???
+// TODO: set container breakpoints
