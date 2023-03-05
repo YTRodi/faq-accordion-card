@@ -7,6 +7,13 @@
 
 @font-face {
   font-family: "KumbhSans";
+  font-weight: 500;
+  src: url("/fonts/KumbhSans-Medium.woff2") format("woff2"),
+    url("/fonts/KumbhSans-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "KumbhSans";
   font-weight: 700;
   src: url("/fonts/KumbhSans-Bold.woff2") format("woff2"),
     url("/fonts/KumbhSans-Bold.woff") format("woff");
