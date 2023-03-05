@@ -1,0 +1,70 @@
+---
+const FAQ_ITEMS = [
+  {
+    question: "How many team members can I invite?",
+    answer: "",
+  },
+  {
+    question: "What is the maximum file upload size?",
+    answer:
+      "No more than 2GB. All files in your account must fit your allotted storage space.",
+  },
+  {
+    question: "How do I reset my password?",
+    answer: "",
+  },
+  {
+    question: "Can I cancel my subscription?",
+    answer: "",
+  },
+  {
+    question: "Do you provide additional support?",
+    answer: "",
+  },
+];
+---
+
+<div class="faq_card">
+  <img
+    class="faq_card_image_foreground"
+    src="/images/faq_foreground_mobile.svg"
+    alt="woman-online"
+  />
+  <img class="faq_card_image_box" src="/images/faq_box.svg" alt="orange-box" />
+  <img
+    class="faq_card_image_shadow"
+    src="/images/faq_shadow_mobile.svg"
+    alt="gray-shadow"
+  />
+  <h1 class="faq_card_title">FAQ</h1>
+  <div class="faq_card_accordion_items">
+    {
+      FAQ_ITEMS.map((faqItem, index) => {
+        const isExpanded = index === 1;
+        const expandedClass = isExpanded
+          ? "faq_card_accordion_item_question--expanded"
+          : "";
+
+        // TODO: componentizar ??? (en vez de usar faq_card_... podría componentizar el accordion)
+        // TODO: y usar las clases así: "accordion_item" | "accordion_item_button" | etc...
+        // TODO: resear estilos del button (all: unset;)
+        // TODO: rotar el icono cuando se expande (crear animación)
+        return (
+          <article class="faq_card_accordion_item">
+            <button class="faq_card_accordion_item_button">
+              <h2 class={`faq_card_accordion_item_question ${expandedClass}`}>
+                {faqItem.question}
+              </h2>
+              <img src="/images/arrow-down.svg" alt="arrow-down" />
+            </button>
+            {isExpanded && (
+              <p class="faq_card_accordion_item_answer">
+                {faqItem.answer || "NO-TEXT"}
+              </p>
+            )}
+          </article>
+        );
+      })
+    }
+  </div>
+</div>
