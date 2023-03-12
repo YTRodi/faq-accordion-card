@@ -1,6 +1,8 @@
 $mobile-faq-card-width: 20rem;
+$animation-duration: 0.3s;
 
 .faq_card {
+  animation: fade-in-backward 0.8s ease-out;
   box-shadow: 0px 60px 200px -65px $dark_grayish_blue;
   position: relative;
   max-width: $mobile-faq-card-width;
@@ -74,9 +76,17 @@ $mobile-faq-card-width: 20rem;
           color: $soft_red;
         }
 
-        &--expanded {
+        &--active {
           font-weight: bold;
           color: $very_dark_grayish_blue;
+        }
+      }
+
+      &_arrow {
+        transition: transform $animation-duration ease-in-out;
+
+        &--active {
+          transform: rotate(-180deg);
         }
       }
 
@@ -84,8 +94,14 @@ $mobile-faq-card-width: 20rem;
         width: 90%;
         font-weight: 400;
         font-size: 0.75rem;
-        padding-bottom: 0.75rem;
         color: $dark_grayish_blue;
+        height: 0;
+        overflow: hidden;
+        transition: height $animation-duration ease;
+
+        &--active {
+          height: 3rem;
+        }
       }
     }
   }
