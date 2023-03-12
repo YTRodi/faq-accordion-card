@@ -72,8 +72,10 @@ $animation-duration: 0.3s;
         color: $dark_grayish_blue;
         transition: color 0.2s;
 
-        &:hover {
-          color: $soft_red;
+        @media (hover: hover) {
+          &:hover {
+            color: $soft_red;
+          }
         }
 
         &--active {
