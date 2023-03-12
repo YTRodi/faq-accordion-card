@@ -2,7 +2,7 @@
 const FAQ_ITEMS = [
   {
     question: "How many team members can I invite?",
-    answer: "",
+    answer: null,
   },
   {
     question: "What is the maximum file upload size?",
@@ -11,15 +11,15 @@ const FAQ_ITEMS = [
   },
   {
     question: "How do I reset my password?",
-    answer: "",
+    answer: null,
   },
   {
     question: "Can I cancel my subscription?",
-    answer: "",
+    answer: null,
   },
   {
     question: "Do you provide additional support?",
-    answer: "",
+    answer: null,
   },
 ];
 ---
@@ -40,31 +40,99 @@ const FAQ_ITEMS = [
   <div class="faq_card_accordion_items">
     {
       FAQ_ITEMS.map((faqItem, index) => {
-        const isExpanded = index === 1;
-        const expandedClass = isExpanded
-          ? "faq_card_accordion_item_question--expanded"
+        const DEFAULT_ACTIVE_INDEX = 1;
+        const isDefaultActiveIndex = index === DEFAULT_ACTIVE_INDEX;
+        const defaultActiveItemQuestionClass = isDefaultActiveIndex
+          ? "faq_card_accordion_item_question--active"
+          : "";
+        const defaultActiveItemArrowClass = isDefaultActiveIndex
+          ? "faq_card_accordion_item_arrow--active"
+          : "";
+        const defaultActiveItemAnswerClass = isDefaultActiveIndex
+          ? "faq_card_accordion_item_answer--active"
           : "";
 
-        // TODO: componentizar ??? (en vez de usar faq_card_... podría componentizar el accordion)
-        // TODO: y usar las clases así: "accordion_item" | "accordion_item_button" | etc...
-        // TODO: resear estilos del button (all: unset;)
-        // TODO: rotar el icono cuando se expande (crear animación)
         return (
           <article class="faq_card_accordion_item">
             <button class="faq_card_accordion_item_button">
-              <h2 class={`faq_card_accordion_item_question ${expandedClass}`}>
+              <h2
+                class={`faq_card_accordion_item_question ${defaultActiveItemQuestionClass}`}
+              >
                 {faqItem.question}
               </h2>
-              <img src="/images/arrow-down.svg" alt="arrow-down" />
+              <img
+                class={`faq_card_accordion_item_arrow ${defaultActiveItemArrowClass}`}
+                src="/images/arrow-down.svg"
+                alt="arrow-down"
+              />
             </button>
-            {isExpanded && (
-              <p class="faq_card_accordion_item_answer">
-                {faqItem.answer || "NO-TEXT"}
-              </p>
-            )}
+            <p
+              class={`faq_card_accordion_item_answer ${defaultActiveItemAnswerClass}`}
+            >
+              {faqItem.answer || "No text"}
+            </p>
           </article>
         );
       })
     }
   </div>
 </div>
+
+<script>
+  const $accordionItems = document.querySelectorAll(".faq_card_accordion_item");
+
+  $accordionItems.forEach((accordionItem) => {
+    const [
+      $accordionButton,
+      $accordionQuestion,
+      $accordionArrow,
+      $accordionAnswer,
+    ] = accordionItem.querySelectorAll(
+      ".faq_card_accordion_item_button, .faq_card_accordion_item_question, .faq_card_accordion_item_arrow, .faq_card_accordion_item_answer"
+    );
+
+    $accordionButton?.addEventListener("click", () => {
+      const [
+        $activeAccordionQuestion,
+        $activeAccordionArrow,
+        $activeAccordionAnswer,
+      ] = document.querySelectorAll(
+        ".faq_card_accordion_item_question--active, .faq_card_accordion_item_arrow--active, .faq_card_accordion_item_answer--active"
+      );
+
+      if (
+        $activeAccordionQuestion &&
+        $activeAccordionQuestion !== $accordionQuestion
+      ) {
+        $activeAccordionQuestion?.classList.remove(
+          "faq_card_accordion_item_question--active"
+        );
+      }
+
+      if ($activeAccordionArrow && $activeAccordionArrow !== $accordionArrow) {
+        $activeAccordionArrow?.classList.remove(
+          "faq_card_accordion_item_arrow--active"
+        );
+      }
+
+      if (
+        $activeAccordionAnswer &&
+        $activeAccordionAnswer !== $accordionAnswer
+      ) {
+        $activeAccordionAnswer?.classList.remove(
+          "faq_card_accordion_item_answer--active"
+        );
+      }
+
+      $accordionQuestion?.classList.toggle(
+        "faq_card_accordion_item_question--active"
+      );
+      $accordionArrow?.classList.toggle(
+        "faq_card_accordion_item_arrow--active"
+      );
+      $accordionAnswer?.classList.toggle(
+        "faq_card_accordion_item_answer--active"
+      );
+    });
+  });
+</script>
